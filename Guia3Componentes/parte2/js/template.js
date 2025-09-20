@@ -61,6 +61,60 @@ document.addEventListener("DOMContentLoaded", () => {
         precio.style.textAlign = "center";
         clon.querySelector(".card").appendChild(precio);
 
+        // Sección de compra
+        const compraDiv = document.createElement("div");
+        compraDiv.className = "compra-section";
+        compraDiv.style.display = "flex";
+        compraDiv.style.flexDirection = "column";
+        compraDiv.style.alignItems = "center";
+        compraDiv.style.marginTop = "14px";
+
+        // Input cantidad
+        const label = document.createElement("label");
+        label.textContent = "Cantidad:";
+        label.style.marginBottom = "4px";
+        label.style.fontSize = "0.98em";
+        label.style.color = "#185a9d";
+        label.setAttribute("for", `cantidad-${producto.titulo.replace(/\s/g, '')}`);
+
+        const input = document.createElement("input");
+        input.type = "number";
+        input.min = "1";
+        input.value = "1";
+        input.id = `cantidad-${producto.titulo.replace(/\s/g, '')}`;
+        input.style.width = "60px";
+        input.style.padding = "4px";
+        input.style.borderRadius = "6px";
+        input.style.border = "1px solid #43cea2";
+        input.style.marginBottom = "8px";
+        input.style.textAlign = "center";
+
+        // Botón comprar
+        const btn = document.createElement("button");
+        btn.textContent = "Comprar";
+        btn.className = "comprar-btn";
+        btn.style.background = "linear-gradient(90deg, #43cea2 0%, #185a9d 100%)";
+        btn.style.color = "#fff";
+        btn.style.border = "none";
+        btn.style.borderRadius = "8px";
+        btn.style.padding = "8px 22px";
+        btn.style.fontWeight = "600";
+        btn.style.cursor = "pointer";
+        btn.style.fontSize = "1em";
+        btn.style.transition = "background 0.2s";
+        btn.onmouseover = () => btn.style.background = "linear-gradient(90deg, #185a9d 0%, #43cea2 100%)";
+        btn.onmouseout = () => btn.style.background = "linear-gradient(90deg, #43cea2 0%, #185a9d 100%)";
+
+        btn.onclick = () => {
+            alert(`¡Gracias por tu compra!\n\nProducto: ${producto.titulo}\nCantidad: ${input.value}\nTotal: ${producto.precio}`);
+        };
+
+        compraDiv.appendChild(label);
+        compraDiv.appendChild(input);
+        compraDiv.appendChild(btn);
+
+        clon.querySelector(".card").appendChild(compraDiv);
+
         contenedor.appendChild(clon);
     });
 });
